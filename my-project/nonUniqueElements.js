@@ -25,12 +25,16 @@ nonUniqueElements([10, 9, 10, 10, 9, 8]) == [10, 9, 10, 10, 9]
  */
 
 export default function nonUniqueElements(data) {
+  const counts = {};
   const nonUnique = [];
 
-data.forEach((value, index) => {
-  if (data.indexOf(value) !== index && nonUnique.indexOf(value) === -1) {
-   nonUnique.push(value);
-  }});
+  data.forEach((value) => {
+    counts[value] = (counts[value] || 0) + 1;
+  });
 
-  return data.filter((value) => nonUnique.indexOf(value) !== -1);
+  data.forEach((value) => {
+    if (counts[value] > 1) nonUnique.push(value);
+  });
+
+  return nonUnique;
 }

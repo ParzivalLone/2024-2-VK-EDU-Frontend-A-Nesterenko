@@ -12,6 +12,7 @@ import convertBytesToHuman from './convertBytesToHuman';
 test('Возвращает false для неправильного типа данных', () => {
   expect(convertBytesToHuman('string')).toBe(false);
   expect(convertBytesToHuman(null)).toBe(false);
+  expect(Number.isNaN(convertBytesToHuman(NaN))).toBe(false);
 });
 
 test('Возвращает корректное значение для чисел', () => {
