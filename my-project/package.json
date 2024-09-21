@@ -1,0 +1,22 @@
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "main": "convertBytesToHuman.js",
+"scripts": {
+  "test": "jest"
+},
+"jest": {
+  "transform": {
+    "^.+\\.jsx?$": "babel-jest"
+  }
+},
+"babel": {
+  "presets": ["@babel/preset-env"]
+},
+  "author": "Alex Nest",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
