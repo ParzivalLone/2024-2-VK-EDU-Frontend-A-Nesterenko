@@ -3,14 +3,7 @@ const fromInput = document.querySelector('.form-input');
 const sendButton = document.querySelector('.send-button');
 const messageListUl = document.querySelector('#message-list-ul');
 
-loadMessagesFromStorage();
-
 fromInput.addEventListener('input', () => {
-    if (fromInput.value.trim() !== '') {
-        sendButton.style.display = 'block';
-    } else {
-        sendButton.style.display = 'none';
-    }
     fromInput.size = fromInput.value.length + 1;
 });
 
@@ -19,7 +12,6 @@ fromInput.addEventListener('keypress', (e) => {
         e.preventDefault();
         sendMessage(e);
         fromInput.value = '';
-        fromInput.placeholder = 'Введите сообщение';
     }
 });
 
@@ -28,12 +20,10 @@ sendButton.addEventListener('click', (e) => {
     if (fromInput.value.trim() !== '') {
         sendMessage(e);
         fromInput.value = '';
-        fromInput.placeholder = 'Введите сообщение';
     }
 });
 
-function sendMessage(event) {
-    console.log('Message sent:', fromInput.value);
+const sendMessage = (event) => {
     const messageText = fromInput.value.trim();
     fromInput.value = '';
     fromInput.placeholder = 'Введите сообщение';
@@ -44,33 +34,22 @@ function sendMessage(event) {
         timestamp: new Date().toLocaleString().slice(0, -3)
     };
 
-    addMessageToList(message);
-    
+    const newMessageElement = addMessageToList(message)
+    newMessageElement.scrollIntoView(true);
+
     saveMessageToStorage(message);
-
-    const newMessageElement = messageListUl.lastChild;
-
-    newMessageElement.scrollIntoView({ behavior: 'smooth' });
     
-    sendButton.style.display = 'none';
-}
+};
 
-function saveMessageToStorage(message) {
+const saveMessageToStorage = (message) => {
     const messages = JSON.parse(localStorage.getItem('messages') || '[]');
     messages.push(message);
     localStorage.setItem('messages', JSON.stringify(messages));
-}
+};
 
-function loadMessagesFromStorage() {
-    const messages = JSON.parse(localStorage.getItem('messages') || '[]');
-    messages.forEach((message) => {
-        addMessageToList(message);
-    });
-}
-
-function addMessageToList(message) {
-    const messageDiv = document.createElement('li');
-    messageDiv.className = 'message-bubble';
+const addMessageToList = (message) => {
+    const messageListItem = document.createElement('li');
+    messageListItem.className = 'message-bubble';
 
     const messageSpan = document.createElement('span');
     messageSpan.textContent = message.text;
@@ -90,9 +69,23 @@ function addMessageToList(message) {
     metadataDiv.appendChild(senderSpan);
     metadataDiv.appendChild(timestampSpan);
 
-    messageDiv.appendChild(messageSpan);
-    messageDiv.appendChild(metadataDiv);
-    messageListUl.appendChild(messageDiv);
+    messageListItem.appendChild(messageSpan);
+    messageListItem.appendChild(metadataDiv);
+    messageListUl.appendChild(messageListItem);
 
-    messageListUl.offsetHeight;
+    return messageListItem;
+
 }
+
+const loadMessagesFromStorage = () => {
+    const messages = JSON.parse(localStorage.getItem('messages') || '[]');
+    const messageContainer = document.createElement('div');
+
+    messages.forEach((message) => {
+        const messageElement = addMessageToList(message);
+        messageContainer.appendChild(messageElement);
+    });
+    messageListUl.appendChild(messageContainer);
+};
+
+loadMessagesFromStorage();
