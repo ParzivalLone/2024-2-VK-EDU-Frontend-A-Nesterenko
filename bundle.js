@@ -86,6 +86,39 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./components/chatlist.js":
+/*!********************************!*\
+  !*** ./components/chatlist.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("var getLastMessage = function getLastMessage(messages) {\n  return messages[messages.length - 1];\n};\nvar getChatTitle = function getChatTitle() {\n  return localStorage.getItem('chatTitle');\n};\nvar displayChatInfo = function displayChatInfo() {\n  var messages = JSON.parse(localStorage.getItem('messages') || '[]');\n  var lastMessage = getLastMessage(messages);\n  var chatTitle = getChatTitle();\n  var chatTitleElement = document.getElementById('chat-title');\n  var lastMessageElement = document.getElementById('last-message');\n  var lastMessageTimeElement = document.getElementById('last-message-time');\n  chatTitleElement.textContent = chatTitle;\n  var maxLength = 30;\n  var truncatedLastMessage = lastMessage.text.substring(0, maxLength) + (lastMessage.text.length > maxLength ? '.....' : '');\n  lastMessageElement.textContent = truncatedLastMessage;\n  lastMessageTimeElement.textContent = lastMessage.timestamp.split(' ')[1];\n};\nwindow.addEventListener('load', displayChatInfo);\nvar chatItem = document.getElementById('chatListUl');\nif (chatItem) {\n  chatItem.addEventListener('click', function () {\n    window.location.href = '/src/index.html';\n    displayChatInfo();\n  });\n}\n;\n\n//# sourceURL=webpack:///./components/chatlist.js?");
+
+/***/ }),
+
+/***/ "./components/createchatbutton.js":
+/*!****************************************!*\
+  !*** ./components/createchatbutton.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("var createChatButton = document.getElementById('create-chat-button');\nvar chatList = document.getElementById('chat-list');\nif (createChatButton && chatList) {\n  createChatButton.addEventListener('click', function () {\n    var chats = JSON.parse(localStorage.getItem('chats')) || [];\n    var titleInput = document.createElement('input');\n    titleInput.type = 'text';\n    titleInput.placeholder = 'Enter chat title';\n    var confirmButton = document.createElement('button');\n    confirmButton.textContent = 'Create Chat';\n    var chatTitleForm = document.createElement('div');\n    chatTitleForm.appendChild(titleInput);\n    chatTitleForm.appendChild(confirmButton);\n    chatList.appendChild(chatTitleForm);\n    confirmButton.addEventListener('click', function () {\n      var title = titleInput.value.trim();\n      if (title) {\n        var newChat = {\n          id: \"chat-\".concat(chats.length + 1),\n          title: title,\n          messages: []\n        };\n        chats.push(newChat);\n        localStorage.setItem('chats', JSON.stringify(chats));\n        chatList.innerHTML = '';\n        chats.forEach(function (chat) {\n          var chatListItem = document.createElement('div');\n          chatListItem.className = 'chat';\n          chatListItem.textContent = chat.title;\n          chatList.appendChild(chatListItem);\n        });\n      }\n    });\n  });\n}\n;\n\n//# sourceURL=webpack:///./components/createchatbutton.js?");
+
+/***/ }),
+
+/***/ "./components/header.js":
+/*!******************************!*\
+  !*** ./components/header.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("var header = document.getElementById('header');\nif (header) {\n  var burgerButton = header.querySelector('.burger-button');\n  if (burgerButton) {\n    burgerButton.addEventListener('click', function () {\n      var menu = header.querySelector('.menu');\n      if (menu) {\n        menu.classList.toggle('visible');\n      }\n    });\n  }\n  var searchIcon = header.querySelector('.search-icon');\n  if (searchIcon) {\n    searchIcon.addEventListener('click', function () {\n      var searchForm = header.querySelector('.search-form');\n      if (searchForm) {\n        searchForm.classList.toggle('visible');\n      }\n    });\n  }\n}\n;\n\n//# sourceURL=webpack:///./components/header.js?");
+
+/***/ }),
+
 /***/ "./index.css":
 /*!*******************!*\
   !*** ./index.css ***!
@@ -105,7 +138,7 @@ eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./inde
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.css */ \"./index.css\");\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_0__);\n\nvar fromInput = document.querySelector('.form-input');\nvar sendButton = document.querySelector('.send-button');\nvar messageListUl = document.querySelector('#message-list-ul');\nfromInput.addEventListener('input', function () {\n  fromInput.size = fromInput.value.length + 1;\n});\nfromInput.addEventListener('keypress', function (e) {\n  if (e.key === 'Enter' && fromInput.value.trim() !== '') {\n    e.preventDefault();\n    sendMessage(e);\n    fromInput.value = '';\n  }\n});\nsendButton.addEventListener('click', function (e) {\n  e.preventDefault();\n  if (fromInput.value.trim() !== '') {\n    sendMessage(e);\n    fromInput.value = '';\n  }\n});\nvar sendMessage = function sendMessage(event) {\n  var messageText = fromInput.value.trim();\n  fromInput.value = '';\n  fromInput.placeholder = 'Введите сообщение';\n  var message = {\n    text: messageText,\n    sender: 'Александр',\n    timestamp: new Date().toLocaleString().slice(0, -3)\n  };\n  var newMessageElement = addMessageToList(message);\n  newMessageElement.scrollIntoView(true);\n  saveMessageToStorage(message);\n};\nvar saveMessageToStorage = function saveMessageToStorage(message) {\n  var messages = JSON.parse(localStorage.getItem('messages') || '[]');\n  messages.push(message);\n  localStorage.setItem('messages', JSON.stringify(messages));\n};\nvar addMessageToList = function addMessageToList(message) {\n  var messageListItem = document.createElement('li');\n  messageListItem.className = 'message-bubble';\n  var messageSpan = document.createElement('span');\n  messageSpan.textContent = message.text;\n  messageSpan.className = 'message-text';\n  var metadataDiv = document.createElement('div');\n  metadataDiv.className = 'metadata';\n  var senderSpan = document.createElement('span');\n  senderSpan.textContent = message.sender;\n  senderSpan.className = 'sender';\n  var timestampSpan = document.createElement('span');\n  timestampSpan.textContent = message.timestamp;\n  timestampSpan.className = 'timestamp';\n  metadataDiv.appendChild(senderSpan);\n  metadataDiv.appendChild(timestampSpan);\n  messageListItem.appendChild(messageSpan);\n  messageListItem.appendChild(metadataDiv);\n  messageListUl.appendChild(messageListItem);\n  return messageListItem;\n};\nvar loadMessagesFromStorage = function loadMessagesFromStorage() {\n  var messages = JSON.parse(localStorage.getItem('messages') || '[]');\n  var messageContainer = document.createElement('div');\n  messages.forEach(function (message) {\n    var messageElement = addMessageToList(message);\n    messageContainer.appendChild(messageElement);\n  });\n  messageListUl.appendChild(messageContainer);\n};\nloadMessagesFromStorage();\n\n//# sourceURL=webpack:///./index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.css */ \"./index.css\");\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _components_chatlist_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/chatlist.js */ \"./components/chatlist.js\");\n/* harmony import */ var _components_chatlist_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_chatlist_js__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _components_createchatbutton_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/createchatbutton.js */ \"./components/createchatbutton.js\");\n/* harmony import */ var _components_createchatbutton_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_components_createchatbutton_js__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _components_header_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/header.js */ \"./components/header.js\");\n/* harmony import */ var _components_header_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_components_header_js__WEBPACK_IMPORTED_MODULE_3__);\n\n\n\n\n\n//# sourceURL=webpack:///./index.js?");
 
 /***/ })
 
