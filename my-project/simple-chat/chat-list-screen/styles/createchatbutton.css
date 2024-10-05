@@ -1,0 +1,26 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+.create-chat-button {
+    position: fixed;
+    bottom: 10%;
+    right: 4%;
+    background-color: #202020e5;
+    color: #ffffff;
+    padding: 1% 1%;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    flex: 1;
+    box-shadow: 0 2px 4px rgba(255, 168, 39, 0.719);
+}
+.create-chat-button:hover {
+    background-color: rgba(75, 75, 75, 0.726);
+}

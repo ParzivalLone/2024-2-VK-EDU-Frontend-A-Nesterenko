@@ -1,4 +1,4 @@
-import './index.css';
+const backButton = document.querySelector('.back-button');
 const fromInput = document.querySelector('.form-input');
 const sendButton = document.querySelector('.send-button');
 const messageListUl = document.querySelector('#message-list-ul');
@@ -23,7 +23,13 @@ sendButton.addEventListener('click', (e) => {
     }
 });
 
-const sendMessage = (event) => {
+backButton.addEventListener('click', () => {
+  if (history.length > 1) {
+    history.back();
+  }
+});
+
+const sendMessage = () => {
     const messageText = fromInput.value.trim();
     fromInput.value = '';
     fromInput.placeholder = 'Введите сообщение';
@@ -75,7 +81,7 @@ const addMessageToList = (message) => {
 
     return messageListItem;
 
-}
+};
 
 const loadMessagesFromStorage = () => {
     const messages = JSON.parse(localStorage.getItem('messages') || '[]');
@@ -87,5 +93,12 @@ const loadMessagesFromStorage = () => {
     });
     messageListUl.appendChild(messageContainer);
 };
+
+const setChatTitle = (title) => {
+    localStorage.setItem('chatTitle', title);
+    document.getElementById('h1').textContent = title;
+};
+  
+setChatTitle('Александр');
 
 loadMessagesFromStorage();
