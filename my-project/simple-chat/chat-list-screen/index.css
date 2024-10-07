@@ -1,0 +1,22 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    background: rgba(36, 50, 65, 0.774);
+    font-optical-sizing: auto;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.25;
+    margin: 0;
+}
+
+@import url('./styles/chatlist.css');
+@import url('./styles/createchatbutton.css');
+@import url('./styles/header.css');

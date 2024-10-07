@@ -26,26 +26,26 @@ header {
     justify-content: space-between;
     z-index: 1;
     top: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.432);
 }
 
-.back-button {
-    background-color: transparent;
+.back-button, .search-icon {
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    padding: 12px;
     border: none;
-    padding: 0;
-    display: flex;
-}
-
-.search-icon {
-    background-color: transparent;
-    border: none;
-    padding: 0;
+    border-radius: 10px;
+    color: #ffffff;
     cursor: pointer;
+    flex-shrink: 1;
     display: flex;
+    background-color:rgba(0, 0, 0, 0.658);
+    box-shadow: 0 2px 4px rgba(255, 168, 39, 0.719);
 }
 
 .back-button:hover, 
 .search-icon:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(75, 75, 75, 0.726);
 }
 
 h1 {
@@ -53,6 +53,7 @@ h1 {
     color: #000;
     font-weight: bold;
     display: flex;
+    text-shadow: 0 4px 6px rgba(255, 184, 78, 0.582);
 }
 
 .message-list {
@@ -85,6 +86,8 @@ h1 {
     width: fit-content;
     min-width: 12%;
     max-width: 60%;
+    box-shadow: 0 2px 4px rgba(20, 20, 20, 0.692);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.178);
 }
 
 .input-container {
@@ -98,6 +101,7 @@ h1 {
     right: 0;
     width: auto;
     box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.432);
 }
 
 .message-input-container {
@@ -132,17 +136,19 @@ h1 {
     margin-left: 16px;
     padding: 12px;
     border: none;
-    border-radius: 6px;
-    color: #000000;
+    border-radius: 10px;
+    color: #ffffff;
     cursor: pointer;
     flex-shrink: 1;
     display: flex;
+    background-color: rgba(0, 0, 0, 0.74);
+    box-shadow: 0 2px 4px rgba(255, 168, 39, 0.719);
 }
 
 .mic-button:hover, 
 .file-button:hover, 
 .send-button:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(68, 68, 68, 0.664);
 }
 
 .button-group {
