@@ -1,4 +1,5 @@
-import './index.css';
-import './components/chatlist.js';
-import './components/createchatbutton.js';
-import './components/header.js';
+import '/index.css';
+import '/chatsrc/chatinfo.js';
+import '/chatsrc/chatlist.js';
+import '/chatsrc/createchatbutton.js';
+import '/chatsrc/header.js';

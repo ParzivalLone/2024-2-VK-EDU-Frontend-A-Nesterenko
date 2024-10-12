@@ -13,27 +13,40 @@
             <span class="material-symbols-outlined">menu</span>
           </button>
           <h2 class="h2">Мессенджер</h2>
-          <button class="search-icon">
+          <button class="search-icon-chats">
             <span class="material-symbols-outlined">search</span>
           </button>
         </header>
         <main class="main-container">
-          <div class="chat-list">
-            <ul id="chatListUl" class="info-chat-container">
-                <img class="page" src="avatar.jpg" alt="Avatar"></img>
-                <h3 class="h3" id="chat-title"></h3>
-                <p class="p" id="last-message"></p>
-                <h4 class="h4" id="last-message-time"></h4>
+          <section class="chat-list">
+            <ul class="chat-container" id="chat-list-ul">
+              <li class="info-chat-container">
+                <img class="avatar" src="../chat-list-screen/avatars/avatar.png" alt="Avatar"></img>
+                <img class="lastmessagepage" id="last-message-image"></img>
+                <h3 class="title" id="chat-title"></h3>
+                <p class="lastmessage" id="last-message"></p>
+                <p class="time" id="last-message-time"></p>
                 <span class="read-indicator">
-                  <span class="material-symbols-outlined">done</span>
+                  <span class="material-symbols-outlined">done_all</span>
                 </span>
+              </li>
             </ul>
-          </div>
+          </section>
         </main>
         <footer>   
             <button class="create-chat-button">
               <span class="material-symbols-outlined">chat</span>
             </button>
+            <div class="modal" id="create-chat-modal">
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Создание чата</h2>
+                <form id="create-chat-form">
+                  <input type="text" id="chat-name" placeholder="Введите название чата">
+                  <button type="submit">Создать</button>
+                </form>
+              </div>
+            </div>
         </footer>
       </body>
       <script>

@@ -1,0 +1,89 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+header {
+    background: linear-gradient(to top, #ffffff, #c5c5c5);
+    padding: 0.5%;
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+    top: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.432);
+}
+
+.h2 {
+    margin: 0;
+    margin-left: 36%;
+    color: #000000;
+    font-weight: bold;
+    overflow: hidden;
+    display: flex;
+    font-size: auto;
+    text-shadow: 0 4px 6px rgba(255, 184, 78, 0.582);
+    font-size: 28px;
+}
+
+.burger-button:hover, 
+.search-icon-chats :hover {
+    background-color: rgba(75, 75, 75, 0.726);
+}
+
+.burger-button {
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    padding: 6px;
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    cursor: pointer;
+    flex-shrink: 1;
+    display: flex;
+    background-color:rgba(0, 0, 0, 0.658);
+    box-shadow: 0 2px 4px rgba(255, 168, 39, 0.719);
+}
+
+.search-icon-chats {
+    margin-left: auto;
+    margin-right: 2.5%;
+    padding: 6px;
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    cursor: pointer;
+    flex-shrink: 1;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.658);
+    box-shadow: 0 2px 4px rgba(255, 168, 39, 0.719);
+}
+
+.search-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 15%;
+    margin-left: 0;
+    margin-right: 2.5%;
+    overflow-x: hidden;
+    display: flex;
+    box-shadow: 0 2px 4px rgba(255, 168, 39, 0.719);
+    background-color: rgba(255, 255, 255, 0.658);
+}
+
+.highlight {
+    background-color: rgba(0, 174, 255, 0.377);
+    padding: 1px;
+    border-radius: 10px;
+    display: inline-block;
+    width: fit-content;
+    display: flex;
+    overflow: hidden;
+}

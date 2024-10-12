@@ -13,6 +13,7 @@
           <button class="back-button">
             <span class="material-symbols-outlined">arrow_back</span>
           </button>
+          <img class="page" src="../avatars/avatar.png" alt="Avatar"></img>
           <h1 id="h1"></h1>
           <button class="search-icon">
             <span class="material-symbols-outlined">search</span>
@@ -29,11 +30,15 @@
             <form class="form" action="/">
               <div class="message-input-container">
                 <textarea class="form-input" name="message-text" placeholder="Введите сообщение"></textarea>
+                <div class="image-preview-container">
+                  <img id="image-preview" src="" alt="Превью изображения"  style="display: none;"></img>
+                  <span class="material-symbols-outlined close-icon">close</span>
+                </div>
                 <div class="button-group">
-                  <button class="mic-button">
+                  <button class="mic-button" type = 'button'>
                     <span class="material-symbols-outlined">mic</span>
                   </button>
-                  <button class="file-button">
+                  <button class="file-button" type = 'button'>
                     <span class="material-symbols-outlined">attach_file</span>
                   </button>
                   <button class="send-button" type="submit">
@@ -45,7 +50,7 @@
           </div>
         </footer>
       </body>
-      <script type="text/javascript" src="appchat.js">
+      <script type="text/javascript" src="../chatsrc/appchat.js">
       </script>
     </body>
 </html>
