@@ -15,12 +15,17 @@ export const displayChatInfo = () => {
   (lastMessage?.text.length > maxLength ? '...' : '');
   lastMessageElement.textContent = truncatedLastMessage;
 
-  lastMessageTimeElement.textContent = lastMessage.timestamp.split(' ')[1];
+  if (lastMessage) {
+    lastMessageTimeElement.textContent = lastMessage.timestamp.split(' ')[1];
 
-  if (lastMessage.image && lastMessageImageElement) {
-    lastMessageImageElement.src = lastMessage.image;
-    lastMessageImageElement.style.display = 'block';
+    if (lastMessage.image && lastMessageImageElement) {
+      lastMessageImageElement.src = lastMessage.image;
+      lastMessageImageElement.style.display = 'block';
+    } else {
+      lastMessageImageElement.style.display = 'none';
+    }
   } else {
+    lastMessageTimeElement.textContent = '';
     lastMessageImageElement.style.display = 'none';
   }
 };

@@ -11,18 +11,26 @@ html {
 .create-chat-button {
     position: fixed;
     bottom: 10%;
-    right: 4%;
+    right: 6%;
     background-color: #202020e5;
+    overflow: hidden;
     color: #ffffff;
-    padding: 0.7% 0.7%;
+    padding: 12px 12px;
     border: none;
     border-radius: 50%;
     cursor: pointer;
-    flex: 1;
-    box-shadow: 0 2px 4px rgba(255, 168, 39, 0.719);
+    display: flex;
+    flex-shrink: 1;
+    box-shadow: 0 2px 4px rgba(255, 100, 39, 0.719);
 }
+
 .create-chat-button:hover {
     background-color: rgba(75, 75, 75, 0.726);
+    box-shadow: 0 2px 4px rgb(240, 74, 24);
+    transform: scale(2);
+    transform: scale(130%);
+	animation: pulse 2s infinite;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.5s;
 }
 
 .modal {
@@ -35,15 +43,28 @@ html {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
+    font-size: auto;
+    overflow: hidden;
 }
 
 .modal-content {
+    overflow: hidden;
     background-color: #fefefe;
     margin: 15% auto;
-    padding: 20px;
+    padding: 10px;
     border: 1px solid #888;
-    width: 30%;
+    box-sizing: border-box;
+    width: 280px;
     border-radius: 10px;
+    font-size: auto;
+}
+
+.avatar-container {
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding: 4px;
 }
 
 .close {
@@ -55,7 +76,23 @@ html {
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: rgb(214, 41, 41);
     text-decoration: none;
     cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        -moz-box-shadow: 0 0 0 0 rgba(204, 103, 44, 0.658);
+        box-shadow: 0 0 0 0 rgba(204, 81, 44, 0.61);
+    }
+    70% {
+        -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+        box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+    }
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+        box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+    }
 }

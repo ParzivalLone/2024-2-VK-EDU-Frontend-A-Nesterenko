@@ -19,41 +19,49 @@ body {
 
 header {
     background: linear-gradient(to top, #ffffff, #c5c5c5);
-    padding: 0.5%;
+    padding: 14px;
     position: sticky;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    overflow: hidden;
     z-index: 1;
     top: 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.432);
 }
 
 .page {
-    border-radius: 50%;
+    border-radius: 32px;
     cursor: pointer;
     width: 58px;
     height: 55px;
     box-sizing: border-box;
     display: flex;
-    margin-left: 2%;
-    overflow: hidden;
+    margin-left: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.432);
+}
+
+
+.page:hover {
+    box-shadow: 0 2px 4px rgba(255, 153, 0, 0.267);
+    transform: scale(1);
+	animation: pulse 2s infinite;
 }
 
 h1 {
     margin: 0;
-    margin-left: 1%;
+    margin-left: 16px;
     color: #000;
     font-weight: bold;
     overflow: hidden;
     display: flex;
+    font-size: auto;
     text-shadow: 0 4px 6px rgba(255, 184, 78, 0.582);
 }
 
 .back-button {
-    margin-left: 2.5%;
-    margin-right: 2.5%;
+    margin-left: 30px;
+    margin-right: 20px;
     padding: 6px;
     border: none;
     border-radius: 10px;
@@ -67,7 +75,7 @@ h1 {
 
 .search-icon {
     margin-left: auto;
-    margin-right: 2.5%;
+    margin-right: 30px;
     padding: 6px;
     border: none;
     border-radius: 10px;
@@ -90,11 +98,16 @@ h1 {
     display: flex;
     box-shadow: 0 2px 4px rgba(255, 168, 39, 0.719);
     background-color: rgba(255, 255, 255, 0.658);
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 .back-button:hover, 
 .search-icon:hover {
     background-color: rgba(75, 75, 75, 0.726);
+    box-shadow: 0 2px 4px rgba(255, 153, 0, 0.267);
+    transform: scale(1);
+	animation: pulse 2s infinite;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .message-list {
@@ -119,24 +132,25 @@ h1 {
     width: auto;
     margin-top: 1%;
     margin-bottom: 2%;
-  }
+}
 
 .message-bubble {
     white-space: normal;
     overflow-x: hidden;
-    padding: 0.5% 0.8% 0.4% 0.8%;
+    padding: 8px 12px 8px 12px;
     border-radius: 10px;
-    margin-bottom: 3%;
+    margin-bottom: 60px;
     list-style: none;
     background: linear-gradient(to bottom, #fad87b, rgb(255, 194, 103));
     width: fit-content;
     max-width: 50%;
     box-shadow: 0 2px 4px rgba(20, 20, 20, 0.692);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.178);
+    animation: fadeIn 0.6s;
 }
 
 .input-container {
-    padding: 0.9%;
+    padding: 20px;
     background-color: #fff;
     border-radius: 4px;
     position: fixed;
@@ -194,6 +208,9 @@ h1 {
 .file-button:hover, 
 .send-button:hover {
     background-color: rgba(68, 68, 68, 0.664);
+    transform: scale(1);
+	animation: pulse 2s infinite;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .button-group {
@@ -231,7 +248,7 @@ h1 {
     height: 250px;
     object-fit: contain;
     border-radius: 5px;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .image-preview-container {
@@ -245,6 +262,7 @@ h1 {
     margin-bottom: 5px;
     background-color: rgba(34, 45, 56, 0.774);
     position: relative;
+    animation: fadeIn 0.5s ease-in-out;
 }
   
 .image-preview-container img {
@@ -264,6 +282,12 @@ h1 {
     display: none;
     color: #ffffff;
     overflow: hidden;
+}
+
+.close-icon:hover {
+    background-color: rgba(255, 0, 0, 0.671);
+    border-radius: 6px;
+    transition: background-color 0.3s ease-in-out;
 }
 
 .message-status-sent.material-symbols-outlined {
@@ -322,5 +346,42 @@ input[type="file"]::file-selector-button {
     100% {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+      -moz-box-shadow: 0 0 0 0 rgba(204, 103, 44, 0.658);
+      box-shadow: 0 0 0 0 rgba(204, 81, 44, 0.61);
+    }
+    70% {
+        -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+        box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+    }
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+        box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
     }
 }

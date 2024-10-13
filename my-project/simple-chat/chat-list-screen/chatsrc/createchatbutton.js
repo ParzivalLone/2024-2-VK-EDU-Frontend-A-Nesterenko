@@ -74,8 +74,7 @@ const addChatToList = (chatData) => {
     chatListItem.addEventListener('click', () => {
       const chatId = chatListItem.dataset.chatId;
       localStorage.setItem('chatId', chatId);
-      window.location.href = `../chat-list-screen/components/indexchat.html?chatId=${chatId}`;
-      displayChatInfo(chatId);
+      window.location.href = `chat-list-screen/components/indexchat.html?chatId=${chatId}`;
     });
 
     localStorage.setItem(`chatData_${chatData.id}`, JSON.stringify(chatData));
