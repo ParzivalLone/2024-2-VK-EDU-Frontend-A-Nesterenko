@@ -125,10 +125,9 @@ backButton.addEventListener('click', () => {
 });
 
 const sendMessage = () => {
+  const chatId = localStorage.getItem('chatId');
   const messageText = fromInput.value.trim();
   const file = fileInput.files[0];
-  const chatId = localStorage.getItem('chatId');
-
   if (file) {
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -146,9 +145,13 @@ const sendMessage = () => {
       const newMessageElement = addMessageToList(message);
       newMessageElement.scrollIntoView(true);
 
-      const messages = JSON.parse(localStorage.getItem(`messages_${chatId}`) || '[]');
-      addMessageToArray(messages, message);
-      saveMessageToStorage(messages);
+      const chatStorageKey = `chat_${chatId}`;
+      const chatData = JSON.parse(localStorage.getItem(chatStorageKey) || '{}');
+      if (!chatData.messages) {
+        chatData.messages = [];
+      }
+      chatData.messages.push(message);
+      localStorage.setItem(chatStorageKey, JSON.stringify(chatData));
     };
     reader.readAsDataURL(file);
   } else if (messageText !== '') {
@@ -165,9 +168,13 @@ const sendMessage = () => {
     const newMessageElement = addMessageToList(message);
     newMessageElement.scrollIntoView(true);
 
-    const messages = JSON.parse(localStorage.getItem(`messages_${chatId}`) || '[]');
-    addMessageToArray(messages, message);
-    saveMessageToStorage(messages);
+    const chatStorageKey = `chat_${chatId}`;
+    const chatData = JSON.parse(localStorage.getItem(chatStorageKey) || '{}');
+    if (!chatData.messages) {
+      chatData.messages = [];
+    }
+    chatData.messages.push(message);
+    localStorage.setItem(chatStorageKey, JSON.stringify(chatData));
   }
 };
 
@@ -225,43 +232,86 @@ const addMessageToArray = (messages, message) => {
   return messages;
 };
 
-const saveMessageToStorage = (messages) => {
-  const chatId = localStorage.getItem('chatId');
-  localStorage.setItem(`messages_${chatId}`, JSON.stringify(messages));
+const saveMessageToStorage = (message, chatId) => {
+  const chatStorageKey = `chat_${chatId}`;
+  const chatData = JSON.parse(localStorage.getItem(chatStorageKey) || '{}');
+  if (!chatData.messages) {
+    chatData.messages = [];
+  }
+  chatData.messages.push(message);
+  localStorage.setItem(chatStorageKey, JSON.stringify(chatData));
+  setChatTitle(chatData.name);
+  const avatarUrl = localStorage.getItem(`avatar_${chatId}`);
+  const avatar = document.querySelector('.avatar');
+  if (avatar) {
+    avatar.src = avatarUrl;
+  }
 };
 
-const loadMessagesFromStorage = () => {
-  const chatId = localStorage.getItem('chatId');
-  const messages = JSON.parse(localStorage.getItem(`messages_${chatId}`) || '[]');
-  const messageFragment = document.createDocumentFragment();
+const loadMessagesFromStorage = (chatId) => {
+  if (chatId) {
+    const chatStorageKey = `chat_${chatId}`;
+    const storedChatId = localStorage.getItem('chatId');
+    if (storedChatId === chatId) {
+      if (localStorage.getItem(chatStorageKey)) {
+        const chatData = JSON.parse(localStorage.getItem(chatStorageKey));
+        const chatName = chatData?.name;
+        if (chatName) {
+          setChatTitle(chatName);
+        } else {
+          const defaultTitle = document.getElementById('h1').textContent;
+          setChatTitle(defaultTitle);
+        }
+        const messages = chatData.messages || [];
+        const messageFragment = document.createDocumentFragment();
 
-  messages.forEach((message) => {
-    message.sent = true;
-    message.read = true;
-    const messageElement = addMessageToList(message);
-    messageFragment.appendChild(messageElement);
-  });
+        messages.forEach((message) => {
+          message.sent = true;
+          message.read = true;
+          const messageElement = addMessageToList(message);
+          messageFragment.appendChild(messageElement);
+        });
 
-  messageListUl.appendChild(messageFragment);
+        messageListUl.appendChild(messageFragment);
+      }
+    }
+  }
 };
 
-const setChatTitle = (title, chatId) => {
-  localStorage.setItem('chatTitle', title);
-  localStorage.setItem('chatId', chatId);
-  document.getElementById('h1').textContent = title;
+const setChatTitle = (title) => {
+  if (title !== null && title !== undefined) {
+    localStorage.setItem('chatTitle', title);
+    document.getElementById('h1').textContent = title;
+  } else {
+    const defaultTitle = document.getElementById('h1').textContent;
+    localStorage.setItem('chatTitle', defaultTitle);
+    document.getElementById('h1').textContent = defaultTitle;
+  }
 };
 
-setChatTitle('Александр', 'alexander-chat-id');
-
-const updateMessageList = (chatId) => {
-  const messagesKey = `messages_${chatId}`;
-  const messages = JSON.parse(localStorage.getItem(messagesKey) || '[]');
-  messageListUl.innerHTML = '';
-  messages.forEach((message) => {
-    const messageListItem = document.createElement('li');
-    messageListItem.textContent = message.text;
-    messageListUl.appendChild(messageListItem);
-  });
+const chatId = localStorage.getItem('chatId');
+if (chatId) {
+  const storedChatId = localStorage.getItem('chatId');
+  if (storedChatId === chatId) {
+    loadMessagesFromStorage(chatId);
+    const chatData = JSON.parse(localStorage.getItem(`chat_${chatId}`));
+    if (chatData && chatData.name) {
+      setChatTitle(chatData.name);
+    } else {
+      const defaultTitle = document.getElementById('h1').textContent;
+      setChatTitle(defaultTitle);
+    }
+    const avatarUrl = localStorage.getItem(`avatar_${chatId}`);
+    if (avatarUrl) {
+      const avatar = document.querySelector('.avatar');
+      if (avatar) {
+        avatar.src = avatarUrl;
+      }
+    } else {
+      const defaultAvatar = document.querySelector('.avatar').src;
+      if (defaultAvatar) {
+        document.querySelector('.avatar').src = defaultAvatar;
+      }
+    }
+  }
 };
-
-loadMessagesFromStorage();

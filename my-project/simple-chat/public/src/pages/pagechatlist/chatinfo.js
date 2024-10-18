@@ -1,23 +1,24 @@
 export const displayChatInfo = () => {
-  const chatId = localStorage.getItem('chatId');
-  const messages = JSON.parse(localStorage.getItem(`messages_${chatId}`) || '[]');
+  const chatId = 'undefined';
+  const messages = JSON.parse(localStorage.getItem(`chat_${chatId}`) || '{}').messages || [];
   const lastMessage = getLastMessage(messages);
-  const chatTitle = getChatTitle();
+  const chatTitle = getChatTitle(chatId);
+ 
 
-  const chatTitleElement = document.getElementById('chat-title');
-  const lastMessageElement = document.getElementById('last-message');
-  const lastMessageTimeElement = document.getElementById('last-message-time');
-  const lastMessageImageElement = document.getElementById('last-message-image');
+  const chatTitleElement = document.querySelector('.title');
+  const lastMessageElement = document.querySelector('.lastmessage');
+  const lastMessageTimeElement = document.querySelector('.time');
+  const lastMessageImageElement = document.querySelector('.lastmessagepage');
+  
 
   chatTitleElement.textContent = chatTitle;
-  const maxLength = 30;
+  const maxLength = 26;
   const truncatedLastMessage = lastMessage?.text.substring(0, maxLength) + 
   (lastMessage?.text.length > maxLength ? '...' : '');
   lastMessageElement.textContent = truncatedLastMessage;
-
+  
   if (lastMessage) {
     lastMessageTimeElement.textContent = lastMessage.timestamp.split(' ')[1];
-
     if (lastMessage.image && lastMessageImageElement) {
       lastMessageImageElement.src = lastMessage.image;
       lastMessageImageElement.style.display = 'block';
@@ -34,6 +35,8 @@ const getLastMessage = (messages) => {
   return messages[messages.length - 1];
 };
 
-const getChatTitle = () => {
-  return localStorage.getItem('chatTitle');
+const getChatTitle = (chatId) => {
+  if (chatId === 'undefined') {
+    return 'Александр';
+  }
 };

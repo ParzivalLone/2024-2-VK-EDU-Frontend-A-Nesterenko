@@ -1,7 +1,7 @@
 const searchButton = document.querySelector('.search-icon-chats');
 const searchInput = document.createElement('input');
 searchInput.type = 'text';
-searchInput.placeholder = 'Посик сообщения...';
+searchInput.placeholder = 'Посик чата...';
 searchInput.className = 'search-input';
 searchInput.style.display = 'none';
 
@@ -17,7 +17,7 @@ searchButton.addEventListener('click', () => {
 });
 
 searchInput.addEventListener('input', () => {
-  const chatTitles = document.querySelectorAll('#chat-title');
+  const chatTitles = document.querySelectorAll('.title');
   const searchTerm = searchInput.value.trim().toLowerCase();
 
   if (searchTerm === '') {

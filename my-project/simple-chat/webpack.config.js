@@ -6,7 +6,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 
-const SRC_PATH = path.resolve(__dirname, 'chat-list-screen');
+const SRC_PATH = path.resolve(__dirname, 'public');
 const BUILD_PATH = path.resolve(__dirname, 'build');
 
 module.exports = {

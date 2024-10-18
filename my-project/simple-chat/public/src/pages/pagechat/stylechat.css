@@ -30,7 +30,7 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.432);
 }
 
-.page {
+.avatar {
     border-radius: 32px;
     cursor: pointer;
     width: 58px;
@@ -42,7 +42,7 @@ header {
 }
 
 
-.page:hover {
+.avatar:hover {
     box-shadow: 0 2px 4px rgba(255, 153, 0, 0.267);
     transform: scale(1);
 	animation: pulse 2s infinite;
