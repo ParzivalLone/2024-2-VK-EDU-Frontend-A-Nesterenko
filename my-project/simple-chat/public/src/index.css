@@ -17,7 +17,7 @@ body {
     margin: 0;
 }
 
-@import url('./components/chatinfo.css');
-@import url('./components/chatlist.css');
-@import url('./components/createchatbutton.css');
-@import url('./components/header.css');
+@import url('./pages/pagechatlist/chatinfo.css');
+@import url('./pages/pagechatlist/chatlist.css');
+@import url('./components/button/createchatbutton.css');
+@import url('./pages/pagechatlist/header.css');
