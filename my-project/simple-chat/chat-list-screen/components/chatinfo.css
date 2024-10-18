@@ -1,0 +1,118 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+.info-chat-container {
+    width: fit-content;
+    margin: 1% 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    cursor: pointer;
+    width: auto;
+    padding: 1%;
+    border-bottom: 1px solid #000000;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.466);
+    white-space: normal;
+    display: grid;
+    grid-template-columns: repeat(3);
+    grid-template-rows: repeat(3);
+    grid-template-columns: minmax(min-content, max-content);
+    grid-template-rows: minmax(min-content, max-content);
+    flex-shrink: 1;
+    background: linear-gradient(to bottom, #fad87b, rgb(255, 194, 103));
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 68px;
+    height: 65px;
+    box-sizing: border-box;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.432);
+    grid-column: 1;
+    grid-row: 1 / 3;
+    margin-top: 5%;
+    margin-left: 50%;
+}
+
+.title {
+    width: fit-content;
+    display: flex;
+    box-sizing: content-box;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    grid-column: 2;
+    grid-row: 1;
+    margin-left: 10%;
+    margin-top: -0.5%;
+    font-size: auto;
+    overflow: hidden;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.212);
+}
+
+.lastmessage {
+    box-sizing: content-box;
+    font-optical-sizing: auto;
+    color: #5c5237;
+    grid-row: 2;
+    grid-column: 2;
+    width: fit-content;
+    text-wrap: nowrap;
+    overflow: hidden;
+    margin-left: 14%;
+    margin-top: -0.5%;
+    font-size: auto;
+    display: flex;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.336);
+}
+
+.lastmessagepage {
+    margin-left: 8%;
+    margin-top: -1.5%;
+    grid-row: 2;
+    grid-column: 2;
+    display: none;
+    width: 45px;
+    height: 45px;
+    box-sizing: border-box;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.432);
+    border-radius: 10px;
+}
+
+.time {
+    font-optical-sizing: auto;
+    overflow: hidden;
+    color: #303030cb;
+    grid-row: 1;
+    grid-column: 3;
+    margin-left: 65%;
+    margin-top: 1%;
+    font-size: auto;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.212);
+    box-sizing: content-box;
+    display: flex;
+    position: sticky;
+}
+
+.read-indicator {
+    overflow: hidden;
+    box-sizing: content-box;
+    font-optical-sizing: auto;
+    color: #0067ac;
+    grid-row: 2;
+    grid-column: 3;
+    margin-left: 67%;
+    font-size: auto;
+    margin-top: 0%;
+    display: flex;
+    position: sticky;
+}

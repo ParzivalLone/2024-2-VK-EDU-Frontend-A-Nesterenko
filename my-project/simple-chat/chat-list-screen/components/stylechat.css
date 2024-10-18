@@ -1,0 +1,326 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    background: rgba(36, 50, 65, 0.774);
+    font-optical-sizing: auto;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.25;
+    margin: 0;
+}
+
+header {
+    background: linear-gradient(to top, #ffffff, #c5c5c5);
+    padding: 0.5%;
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+    top: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.432);
+}
+
+.page {
+    border-radius: 50%;
+    cursor: pointer;
+    width: 58px;
+    height: 55px;
+    box-sizing: border-box;
+    display: flex;
+    margin-left: 2%;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.432);
+}
+
+h1 {
+    margin: 0;
+    margin-left: 1%;
+    color: #000;
+    font-weight: bold;
+    overflow: hidden;
+    display: flex;
+    text-shadow: 0 4px 6px rgba(255, 184, 78, 0.582);
+}
+
+.back-button {
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    padding: 6px;
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    cursor: pointer;
+    flex-shrink: 1;
+    display: flex;
+    background-color:rgba(0, 0, 0, 0.658);
+    box-shadow: 0 2px 4px rgba(255, 168, 39, 0.719);
+}
+
+.search-icon {
+    margin-left: auto;
+    margin-right: 2.5%;
+    padding: 6px;
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    cursor: pointer;
+    flex-shrink: 1;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.658);
+    box-shadow: 0 2px 4px rgba(255, 168, 39, 0.719);
+}
+  
+.search-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 15%;
+    margin-left: 0;
+    margin-right: 2.5%;
+    overflow-x: hidden;
+    display: flex;
+    box-shadow: 0 2px 4px rgba(255, 168, 39, 0.719);
+    background-color: rgba(255, 255, 255, 0.658);
+}
+
+.back-button:hover, 
+.search-icon:hover {
+    background-color: rgba(75, 75, 75, 0.726);
+}
+
+.message-list {
+    padding: 3%;
+    flex: 1;
+    overflow-y: auto;
+    margin-top: 1%;
+    margin-bottom: 2%;
+}
+
+.message-text {
+    font-optical-sizing: auto;
+    color: #000000;
+    display: flex;
+    font-kerning: auto;
+    margin-top: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    height: auto;
+    width: auto;
+    margin-top: 1%;
+    margin-bottom: 2%;
+  }
+
+.message-bubble {
+    white-space: normal;
+    overflow-x: hidden;
+    padding: 0.5% 0.8% 0.4% 0.8%;
+    border-radius: 10px;
+    margin-bottom: 3%;
+    list-style: none;
+    background: linear-gradient(to bottom, #fad87b, rgb(255, 194, 103));
+    width: fit-content;
+    max-width: 50%;
+    box-shadow: 0 2px 4px rgba(20, 20, 20, 0.692);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.178);
+}
+
+.input-container {
+    padding: 0.9%;
+    background-color: #fff;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.432);
+}
+
+.message-input-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.form-input {
+    flex-grow: 1;
+    padding: auto;
+    border: auto solid #f0f0f0;
+    border-radius: 4px;
+    font-optical-sizing: auto;
+    outline: none;
+    width: auto;
+    overflow-y: auto;
+    resize: none;
+    display: flex;
+    min-width: 50%;
+    max-width: 100%;
+    padding-bottom: 10px;
+}
+
+.form-input:focus + .send-button,
+.form-input:not(:placeholder-shown) + .send-button {
+    display: inline-block;
+}
+
+.mic-button, 
+.file-button, 
+.send-button {
+    margin-left: 16px;
+    padding: 6px;
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    cursor: pointer;
+    flex-shrink: 1;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.74);
+    box-shadow: 0 2px 4px rgba(255, 168, 39, 0.719);
+}
+
+.mic-button:hover, 
+.file-button:hover, 
+.send-button:hover {
+    background-color: rgba(68, 68, 68, 0.664);
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.metadata {
+    font-optical-sizing: auto;
+    color: #5a5a5a;
+    padding-top: 0%;
+    margin-top: auto;
+    font-weight: bold;
+    display: flex;
+    overflow-x: hidden;
+    word-break: auto;
+    justify-content: flex-end;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    flex-wrap: wrap;
+    font-size: 13px;
+}
+
+.sender, 
+.timestamp {
+    font-weight: bold;
+    margin-right: 1%;
+    display: flex;
+    overflow: hidden;
+}
+
+.message-image {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+    border-radius: 5px;
+    overflow-x: hidden;
+}
+
+.image-preview-container {
+    width: 10%;
+    height: 100px;
+    border-radius: 5px;
+    overflow: hidden;
+    display: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.651);
+    margin-bottom: 5px;
+    background-color: rgba(34, 45, 56, 0.774);
+    position: relative;
+}
+  
+.image-preview-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    margin: auto;
+    overflow: hidden;
+}
+
+.close-icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.message-status-sent.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-size: 24px;
+    color: #242424;
+    overflow: hidden;
+    display: flex;
+}
+  
+.message-status-read.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-size: 24px;
+    color: #0071bd;
+    overflow: hidden;
+    display: flex;
+}
+
+.image-preview-container {
+    display: none;
+}
+  
+.image-preview-container.open {
+    display: block;
+}
+  
+.image-preview-container.open .close-icon {
+    display: block;
+}
+
+.image-preview-container.has-image {
+    display: block;
+}
+
+.form-input + .image-preview-container {
+    margin-left: 20px;
+}
+
+input[type="file"] {
+    display: none;
+}
+  
+input[type="file"]::-webkit-file-upload-button {
+    display: none;
+}
+  
+input[type="file"]::file-selector-button {
+    display: none;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
